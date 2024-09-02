@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.width = mapImage.width;
     canvas.height = mapImage.height;
 
-    // Draw a light gray layer
-    ctx.fillStyle = 'lightgray';
+    // Draw a semi-transparent gray layer
+    ctx.fillStyle = 'rgba(211, 211, 211, 0.8)'; // Light gray with 80% opacity
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // Handle mouse events
