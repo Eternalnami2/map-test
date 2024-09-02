@@ -3,21 +3,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas.getContext('2d');
     const mapImage = document.getElementById('map-image');
 
+    // Create a new Image object for the overlay
+    const overlayImage = new Image();
+    overlayImage.src = 'overlay.png'; // Path to your overlay PNG
+
     function resizeCanvas() {
         // Set canvas size to match the image size
         canvas.width = mapImage.clientWidth;
         canvas.height = mapImage.clientHeight;
 
-        // Redraw the gray layer
-        ctx.fillStyle = 'rgba(211, 211, 211, 0.8)'; // Light gray with 80% opacity
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // Draw the overlay image on the canvas
+        ctx.drawImage(overlayImage, 0, 0, canvas.width, canvas.height);
     }
 
-    // Call resizeCanvas on load and on resize
-    mapImage.addEventListener('load', resizeCanvas);
-    window.addEventListener('resize', resizeCanvas);
+    // Wait for the overlay image to load before resizing the canvas
+    overlayImage.onload = resizeCanvas;
 
-    resizeCanvas(); // Initial call to set canvas size
+    // Call resizeCanvas on window resize
+    window.addEventListener('resize', resizeCanvas);
 
     // Handle mouse events
     let isDrawing = false;
