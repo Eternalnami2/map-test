@@ -4,9 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const mapImage = document.getElementById('map-image');
 
     function resizeCanvas() {
-        // Set canvas size to match the container
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        // Set canvas size to match the image size
+        canvas.width = mapImage.clientWidth;
+        canvas.height = mapImage.clientHeight;
 
         // Redraw the gray layer
         ctx.fillStyle = 'rgba(211, 211, 211, 0.8)'; // Light gray with 80% opacity
@@ -14,8 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Call resizeCanvas on load and on resize
+    mapImage.addEventListener('load', resizeCanvas);
     window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
+
+    resizeCanvas(); // Initial call to set canvas size
 
     // Handle mouse events
     let isDrawing = false;
