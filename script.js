@@ -3,13 +3,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas.getContext('2d');
     const mapImage = document.getElementById('map-image');
 
-    // Set canvas size to match the image
-    canvas.width = mapImage.width;
-    canvas.height = mapImage.height;
+    function resizeCanvas() {
+        // Set canvas size to match the container
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-    // Draw a semi-transparent gray layer
-    ctx.fillStyle = 'rgba(211, 211, 211, 0.8)'; // Light gray with 80% opacity
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // Redraw the gray layer
+        ctx.fillStyle = 'rgba(211, 211, 211, 0.8)'; // Light gray with 80% opacity
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    // Call resizeCanvas on load and on resize
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
 
     // Handle mouse events
     let isDrawing = false;
