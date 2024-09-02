@@ -12,8 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
         canvas.width = mapImage.clientWidth;
         canvas.height = mapImage.clientHeight;
 
-        // Draw the overlay image on the canvas
+        // Clear the canvas and draw the overlay image with transparency
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.globalAlpha = 0.8; // Set transparency (80% opaque)
         ctx.drawImage(overlayImage, 0, 0, canvas.width, canvas.height);
+        ctx.globalAlpha = 1; // Reset to full opacity for future drawings
     }
 
     // Wait for the overlay image to load before resizing the canvas
